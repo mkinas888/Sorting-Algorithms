@@ -26,22 +26,26 @@ void mergeArray (type array[], type firstElem, type middleElem, type lastElem) {
         tempRight[j] = array[middleElem + 1+ j];
  
     /* Merge the temp arrays back into sorted array*/
-    i = 0;                                          // Index of tempLeft
-    j = 0;                                          // Index of tempRight
-    k = firstElem;                                  // Index of sorted array
-    while (i < tempLeftSize && j < tempRightSize)
+    i = 0;                                          // index of tempLeft
+    j = 0;                                          // index of tempRight
+    k = firstElem;                                  // index of sorted array
+
+    /* As long as both arrays are not exceeded */
+    while (i < tempLeftSize && j < tempRightSize)   
     {
-        if (tempLeft[i] <= tempRight[j])
+        if (tempLeft[i] <= tempRight[j])            // choose smaller element
         {
-            array[k] = tempLeft[i];
-            i++;
+            /* If left array element is smaller put it into array to be sorted */
+            array[k] = tempLeft[i];                 
+            i++;                                    
         }
         else
         {
+            /* If not put element from right array */
             array[k] = tempRight[j];
             j++;
         }
-        k++;
+        k++;                                        
     }
  
     /* If some elemnts of temp arrays are left copy them too */
@@ -57,6 +61,46 @@ void mergeArray (type array[], type firstElem, type middleElem, type lastElem) {
         array[k] = tempRight[j];
         j++;
         k++;
+    }
+}
+
+template <typename type>
+void swapElements (type & firstElem, type & secondElem) {
+    type tempElem = firstElem;              // helper variable set as first element to swap
+    firstElem = secondElem;                 // first element becomes second
+    secondElem = tempElem;                  // second becomes first
+}
+
+template <typename type>
+void sortByQuicksort(type array[], type firstElem, type lastElem) {
+
+    type i, j, pivotElem;                           // helper variables
+    i = firstElem;
+    j = lastElem;
+    pivotElem = array[(firstElem + lastElem) / 2];  // pivotElem is chosen in the middle
+
+    while (i <= j) {
+
+     while (array[i] < pivotElem) {
+        i++;
+     }
+     while (array[j] > pivotElem) {
+         j--;
+     }
+    if (i <= j) {
+        swapElements(array[i], array[j]);
+        i++;
+        j--;
+    }
+    };
+
+    /* Recusively sort elements so as to array become sorted */
+    if (firstElem < j) { 
+        sortByQuicksort(array, firstElem, j);
+    }
+
+    if (i < lastElem) {
+        sortByQuicksort(array, i, lastElem);
     }
 }
  

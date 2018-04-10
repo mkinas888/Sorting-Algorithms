@@ -1,36 +1,36 @@
 #include "AlgorithmsDeclarations.hh"
 #include "AlgorithmsImplementation.cpp"
-#include<time.h>
+#include <time.h>
 #include <chrono>
+#include <iostream>
 
 using namespace std;
 
 int main () {
     
-    int ROZMIAR = 1000;
-    int Tk[ROZMIAR];   // tablica kluczy węzłów
-    int i,x,i1,i2;
+    int SIZE = 1000000;           // variable defining lenght of array to sort
+    int Tk[SIZE];                 // array to sort
+    int i,x,i1,i2;                // helper variables
 
-    srand(time(NULL));        // inicjujemy generator pseudolosowy
+    srand(time(NULL));            // generator pseudorandom numbers
 
 
-    for(i = 0; i < ROZMIAR  ; i++)   // Tablicę wypełniamy wartościami kluczy
+    for(i = 0; i < SIZE  ; i++)   // fill array 
         Tk[i] = i + 1;
     
-    for(i = 0; i < 2*ROZMIAR ; i++)  // Mieszamy tablicę
+    for(i = 0; i < 2*SIZE ; i++)  // mix values so as to get random sorted data
     {
-        i1 = rand() % ROZMIAR;       // Losujemy 2 indeksy
-        i2 = rand() % ROZMIAR;
+        i1 = rand() % SIZE;       // take two random values
+        i2 = rand() % SIZE;
 
-        x = Tk[i1];             // Wymieniamy Tk[i1] <--> Tk[i2]
+        x = Tk[i1];               // and next swap the values
         Tk[i1] = Tk[i2];
         Tk[i2] = x;
     }
-        /* !!! */
 
-    sortByMerge<int>(Tk, 0, ROZMIAR - 1);
+    sortByQuicksort<int>(Tk, 0, SIZE - 1);
     
-    for (int j = 0; j < ROZMIAR - 1; j++) {
+    for (int j = 0; j < SIZE - 1; j++) {
         cout << Tk[j] << endl;
     }
 
