@@ -3,12 +3,15 @@
 #include <time.h>
 #include <chrono>
 #include <iostream>
+#include <string>
+#include <cstdlib>
+
 
 using namespace std;
 
 int main () {
     
-    int SIZE = 1000000;           // variable defining lenght of array to sort
+    const int SIZE = 10000;     // variable defining lenght of array to sort
     int Tk[SIZE];                 // array to sort
     int i,x,i1,i2;                // helper variables
 
@@ -28,10 +31,26 @@ int main () {
         Tk[i2] = x;
     }
 
-    sortByQuicksort<int>(Tk, 0, SIZE - 1);
+    auto start = std::chrono::system_clock::now();
+    //sortByQuicksort<int>(Tk, 0, SIZE - 1);
+    //sortByMerge<int>(Tk, 0, SIZE - 1);
+    //sortByHeapSort<int>(Tk, SIZE);
+    //sortByIntroSort<int>(Tk, SIZE);
+    //sortByInsertionSort<int>(Tk, SIZE);
     
-    for (int j = 0; j < SIZE - 1; j++) {
-        cout << Tk[j] << endl;
+    auto end = std::chrono::system_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+
+    /*
+    for (int x = 0; x < SIZE; x++) {
+        cout << Tk[x] << endl;
+    }
+    */
+    if(checkIfArrayIsSorted<int>(Tk, SIZE)) {
+        cout << "Array is sorted" <<endl;
     }
 
+    cout << elapsed << endl;
+
+    
 }
