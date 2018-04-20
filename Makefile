@@ -3,8 +3,8 @@
 #
 CXXFLAGS=-g -Iinc -pedantic -std=c++0x
 
-__start__: sorting_algorithms
-	./sorting_algorithms
+__start__: sorting_algorithms 
+	./sorting_algorithms 0 10000 "reverse"
 
 sorting_algorithms: obj obj/main.o obj/AlgorithmsImplementation.o
 	g++ -Wall -pedantic -std=c++0x -o sorting_algorithms obj/main.o obj/AlgorithmsImplementation.o

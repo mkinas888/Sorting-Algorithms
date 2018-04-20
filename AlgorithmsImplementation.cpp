@@ -204,17 +204,14 @@ void sortByIntroSort(type array[], type size) {
     /* Depending on partition size choose which sorting algorithm you should use */
 	if (partitionSize < 16)
 	{
-        cout << "perform insertion sort" << endl;
 		sortByInsertionSort(array,size);
 	}
 	else if (partitionSize >(2 * log(size)))
 	{
-        cout << "perform heap sort" << endl;
 		sortByHeapSort(array, size);
 	}
 	else
 	{
-        cout << "perform quicksort sort" << endl;
 		sortByQuicksort(array, 0, size - 1);
 	}
 }
@@ -226,7 +223,6 @@ bool checkIfArrayIsSorted (type array[], type size) {
     for(type i = 0; i < size - 1; i++) {
         if (array[i] > array[i+1]) {       // Check if previous element is smaller than current
             isSorted = false;              // set param isSorted to false
-            cout << array[i] << array[i+1] << endl;  // print badly sorted values
         }
     }
     return isSorted;
