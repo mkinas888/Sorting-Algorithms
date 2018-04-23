@@ -14,6 +14,7 @@ int main (int argc, char *argv[]) {
     const int SIZE = atoi(argv[2]);     // variable defining lenght of array to sort
     int Tk[SIZE];                 // array to sort
     int i,x,i1,i2;                // helper variables
+    int *firstElem, *lastElem;
 
     srand(time(NULL));            // generator pseudorandom numbers
 
@@ -42,6 +43,8 @@ int main (int argc, char *argv[]) {
             Tk[j] = j;
         }
         }
+        firstElem = &Tk[0];
+        lastElem = &Tk[SIZE - 1];
 
     auto start = std::chrono::system_clock::now();
     // Choose algorithm to sort array
@@ -49,7 +52,7 @@ int main (int argc, char *argv[]) {
     //sortByQuicksort<int>(Tk, 0, SIZE - 1);
     //sortByMerge<int>(Tk, 0, SIZE - 1);
     //sortByHeapSort<int>(Tk, SIZE);
-    sortByIntroSort<int>(Tk, SIZE);
+    sortByIntroSort<int>(Tk, SIZE, firstElem, lastElem);
     //sortByInsertionSort<int>(Tk, SIZE);
     
     auto end = std::chrono::system_clock::now();
@@ -61,7 +64,7 @@ int main (int argc, char *argv[]) {
         cout << "Array is sorted" <<endl;
     }
     */
-
+    
     cout << elapsed << endl;
 
     

@@ -109,35 +109,6 @@ void sortByQuicksort(type array[], type firstElem, type lastElem) {
     }
 }
 
-
-
-
-
-template <typename type>
-type calculatePartitionSize(type array[], type firstElem, type lastElem) {
-
-    type pivotElem = array[lastElem];   
-    type i = firstElem ;  
- 
-    for (type j = firstElem; j <= lastElem; j++)
-    {
-        if (array[j] <= pivotElem)      // If current element is smaller than or equal to pivot
-        {
-            i++;                                // go further in array
-            swapElements(array[i], array[j]);   // and swap current elements  
-        }
-    }
-    swapElements(array[i], array[lastElem]);
-    return i ;
-}
- 
-
-
-
-
-
-
-
 template <typename type>
 void fixHeapStructure(type array[], type heapSize, type index) {
     
@@ -198,15 +169,14 @@ void sortByInsertionSort(type array[], type size) {
 }
 
 template <typename type>
-void sortByIntroSort(type array[], type size) {
-	type partitionSize = calculatePartitionSize(array, 0, size - 1);
-
+void sortByIntroSort(type array[], type size, type *firstElem, type *lastElem) {
+    type depthLimit = 2*log(lastElem - firstElem); 
     /* Depending on partition size choose which sorting algorithm you should use */
-	if (partitionSize < 16)
+	if (size < 16)
 	{
 		sortByInsertionSort(array,size);
 	}
-	else if (partitionSize >(2 * log(size)))
+	else if (depthLimit == 0)
 	{
 		sortByHeapSort(array, size);
 	}

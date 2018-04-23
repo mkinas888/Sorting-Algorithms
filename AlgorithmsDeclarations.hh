@@ -18,8 +18,7 @@ template <typename type> void sortByHeapSort(type array[], type size);
 /* Function declarations for insertion sort */
 template <typename type> void sortByInsertionSort(type array[], type size);
 
-template <typename type> void sortByIntroSort(type array[], type size);
-template <typename type> type calculatePartitionSize (type* array, type firstElem, type lastElem);
+template <typename type> void sortByIntroSort(type array[], type size, type *firstElem, type *lastElem);
 
 /* Function for validation if array is sorted properly */
 template <typename type> bool checkIfArrayIsSorted (type array[], type size);
